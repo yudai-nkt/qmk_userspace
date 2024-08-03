@@ -65,9 +65,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: firmware
+          path: assets
       - name: Create a new GitHub release
         run: |
-          gh release create "$(TZ=Asia/Tokyo date --iso-8601=seconds)" *.bin *.hex *.uf2 \
+          gh release create "$(TZ=Asia/Tokyo date --iso-8601=seconds)" assets/* \
             --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
