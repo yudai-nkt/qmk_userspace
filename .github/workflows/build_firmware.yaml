@@ -69,3 +69,5 @@ jobs:
         run: |
           gh release create "$(TZ=Asia/Tokyo date --iso-8601=seconds)" *.bin *.hex *.uf2 \
             --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
