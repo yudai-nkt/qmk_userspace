@@ -1,5 +1,5 @@
 # Largely based on QMK's builtin workflow but tailored for my usage with Vial
-name: Build Vial firmware
+name: Build and publish Vial firmware
 
 on:
   push:
@@ -15,7 +15,6 @@ permissions:
 
 jobs:
   build:
-    name: Build Userspace Firmware
     runs-on: ubuntu-latest
     container: qmkfm/base_container
     steps:
@@ -51,14 +50,13 @@ jobs:
         if: always() && !cancelled()
         continue-on-error: true
         with:
-          name: Firmware
+          name: firmware
           path: |
             *.bin
             *.hex
             *.uf2
 
   publish:
-    name: 'QMK Userspace Publish'
     if: always() && !cancelled()
     needs: build
     runs-on: ubuntu-latest
@@ -66,7 +64,7 @@ jobs:
       - name: Download binaries
         uses: actions/download-artifact@v4
         with:
-          name: Firmware
+          name: firmware
       - name: Create a new GitHub release
         run: |
           gh release create "$(TZ=Asia/Tokyo date --iso-8601=seconds)" *.bin *.hex *.uf2 \
