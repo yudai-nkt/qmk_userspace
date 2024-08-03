@@ -137,4 +137,13 @@ bool oled_task_user(void) {
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);
 }
+
+bool is_mouse_record_kb(uint16_t keycode, keyrecord_t* record) {
+    switch (keycode) {
+        case SCRL_MO:
+            return true;
+        default:
+            return false;
+    }
+}
 #endif
