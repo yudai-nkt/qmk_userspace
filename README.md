@@ -15,3 +15,11 @@ have necessary dependencies (e.g., compiler toolchain for your target MCU) insta
 
 Refer to [the QMK documentation](https://docs.qmk.fm/newbs_external_userspace)
 for general guide on how to add build targets to your userspace and how to build them.
+
+
+## License
+
+All the code I write in this repository is released under the GNU General Public License v2.0 unless otherwise noted.
+
+Keymaps for keyboards that are not designed by me might have a different license than GPL-2.0.
+Make sure to refer to each license notice in such cases.
